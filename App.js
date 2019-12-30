@@ -12,6 +12,8 @@ import { ThemeProvider } from "styled-components";
 import { ApolloProvider } from "react-apollo-hooks";
 import ApolloClient from "apollo-boost";
 import apolloClientOptions from "./apollo";
+import NavController from "./Components/NavController";
+import { AuthProvider } from "./AuthContext";
 
 export default function App() {
   const [loaded, setLoaded] = useState(false);
@@ -34,59 +36,29 @@ export default function App() {
         ...apolloClientOptions
       });
       const isLoggedIn = await AsyncStorage.getItem("isLoggedIn");
-      if (!isLoggedIn || isLoggedIn === "false") {
+      if(!isLoggedIn || isLoggedIn === "false"){
         setIsLoggedIn(false);
-      } else {
+      }
+      else{
         setIsLoggedIn(true);
       }
-
       setLoaded(true);
       setClient(client);
-      console.log(loaded + "." + client + "." + isLoggedIn);
     } catch (e) {
       console.log(e);
     }
   };
+
   useEffect(() => {
     preLoad();
   }, []);
 
-  const logUserIn = async () => {
-    try {
-      await AsyncStorage.setItem("isLoggedIn", "true");
-      setIsLoggedIn(true);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  const logUserOut = async () => {
-    try {
-      await AsyncStorage.setItem("isLoggedIn", "false");
-      setIsLoggedIn(false);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-  console.log(isLoggedIn);
-  return loaded && client && isLoggedIn !== null ? (
+  return loaded && client && isLoggedIn !==null ?(
     <ApolloProvider client={client}>
       <ThemeProvider theme={styles}>
-        <View style={
-          {
-            flex:1, justifyContent:"center", alignItems:"center"
-          }
-        }>
-          {isLoggedIn === true ? (
-            <TouchableOpacity onPress={logUserOut}>
-              <Text>log out</Text>
-            </TouchableOpacity>
-          ) : (
-            <TouchableOpacity onPress={logUserIn}>
-              <Text>log in</Text>
-            </TouchableOpacity>
-          )}
-        </View>
+        <AuthProvider isLoggedIn={isLoggedIn}>
+          <NavController />
+        </AuthProvider>
       </ThemeProvider>
     </ApolloProvider>
   ) : (
