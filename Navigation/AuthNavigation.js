@@ -7,8 +7,8 @@ import AuthHome from "../screens/Auth/AuthHome";
 
 const AuthNavigation = createStackNavigator({
   Login,
-  SignUp,
   Confirm,
+  SignUp,
   AuthHome
 }, 
 {

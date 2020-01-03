@@ -4,13 +4,13 @@ import PropTypes from "prop-types";
 import constants from "../screens/constants";
 
 const Container = styled.View`
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   align-items: center;
 `;
 
 const TextInput = styled.TextInput`
     background-color: ${props => props.theme.greyColor}
-    width: ${constants.width / 1.8};
+    width: ${constants.width / 2};
     padding:5px 10px;
     border: 1px solid ${props => props.theme.lightGreyColor};
     border-radius:4px;

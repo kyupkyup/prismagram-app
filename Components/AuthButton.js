@@ -12,6 +12,7 @@ background-color:${props => props.theme.blueColor};
 width: ${constants.width / 2};
 padding:10px 0;
 border-radius:5px;
+margin-top: 10px;
 `;
 const Text = styled.Text`
 
