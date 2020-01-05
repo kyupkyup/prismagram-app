@@ -1,5 +1,5 @@
 const apolloClientOptions = {
-    uri: "http://172.30.1.17:4000"
+    uri: "http://192.168.0.2:4000"
 
 }
 

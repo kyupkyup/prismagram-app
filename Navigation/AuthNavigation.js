@@ -4,6 +4,7 @@ import SignUp from "../screens/Auth/SignUp";
 import Login from "../screens/Auth/Login";
 import Confirm from "../screens/Auth/Confirm";
 import AuthHome from "../screens/Auth/AuthHome";
+import { stackStyles } from "./config";
 
 const AuthNavigation = createStackNavigator({
   Login,
