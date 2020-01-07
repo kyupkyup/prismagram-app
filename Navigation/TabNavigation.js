@@ -74,15 +74,13 @@ export default createBottomTabNavigator(
       }
     },
     Search: {
-      screen: stackFactory(Search, {
-        title: "Search"
-      }),
+      screen: stackFactory(Search),
       navigationOptions: {
         tabBarIcon: ({ focused }) => (
           <NavIcon
             focused={focused}
             name={
-              Platform.OS === "ios" ? "ios-folder-search" : "md-folder-search"
+              Platform.OS === "ios" ? "ios-search" : "md-search"
             }
             size={26}
           />
