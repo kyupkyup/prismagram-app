@@ -9,6 +9,8 @@ import Search from "../screens/Tabs/Search";
 import MessagesLink from "../Components/MessagesLink";
 import NavIcon from "../Components/NavIcon";
 import { stackStyles } from "./config";
+import Detail from "../screens/Detail"
+import styles from "../styles";
 
 const stackFactory = (initialRoute, customConfig) =>
   createStackNavigator({
@@ -19,7 +21,21 @@ const stackFactory = (initialRoute, customConfig) =>
         headerStyle: { ...stackStyles }
       }
     }
-  });
+    ,Detail:{
+      screen: Detail, 
+      navigationOptions:{
+        headerTintColor:styles.blackColor,
+        title: "Photo"
+      }
+    }
+  },
+  {
+    defaultNavigationOptions:{
+      headerStyle: {...stackStyles}
+    }
+  }
+  
+  );
 
 export default createBottomTabNavigator(
   {

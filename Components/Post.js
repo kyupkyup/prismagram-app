@@ -74,6 +74,7 @@ const Post = ({
       postId: id
     }
   })
+  console.log(files);
   const handleLike = async () => {
     if(isLiked === true){
       setLikeCount(l => l - 1);
