@@ -10,19 +10,11 @@ import UserProfile from "../../Components/UserProfile";
 const ME = gql`
   {
     me {
-      ...userParts
+      ...UserParts
     }
   }
   ${USER_FRAGMENT}
 `;
-
-// const GET_USER = gql`
-//     query seeUser($userName: String!){
-//         seeUser(userName: $userName){
-            
-//         }
-//     }
-// `;
 
 const View = styled.View`
   justify-content: center;
@@ -30,8 +22,11 @@ const View = styled.View`
   flex: 1;
 `;
 
-
 export default () => {
-    const {data, loading} = useQuery(ME);
-return <ScrollView>{loading ? <Loader /> : data && data.me && <UserProfile {...data.me}/> } </ScrollView>;
+  const { data, loading } = useQuery(ME);
+  return (
+    <ScrollView>
+      {loading ? <Loader /> : data && data.me && <UserProfile {...data.me} />}
+    </ScrollView>
+  );
 };

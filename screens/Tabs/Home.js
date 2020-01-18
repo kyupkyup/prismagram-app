@@ -7,7 +7,7 @@ import { gql } from "apollo-boost";
 import Post from "../../Components/Post"
 import { POST_FRAGMENT } from "../../fragments";
 
-const FEED_QUERY = gql`
+export const FEED_QUERY = gql`
   {
     seeFeed {
     ...PostParts   

@@ -8,7 +8,7 @@ import { Ionicons } from "@expo/vector-icons";
 import styles from "../styles";
 import {gql} from "apollo-boost";
 import { useMutation } from "react-apollo-hooks";
-
+import {withNavigation, navigation} from "react-navigation";
 export const TOGGLE_LIKE = gql`
   mutation toggleLike($postId: String!){
     toggleLike(postId: $postId)
@@ -65,7 +65,8 @@ const Post = ({
   caption,
   comments = [],
   isLiked: isLikedProp,
-  id
+  id,
+  navigation
 }) => {
   const [isLiked, setIsLiked] = useState(isLikedProp);
   const [likeCount, setLikeCount] = useState(likeCountProp);
@@ -95,13 +96,13 @@ const Post = ({
   return (
     <Container>
       <Header>
-        <Touchable>
+        <Touchable onPress={() => navigation.navigate("UserDetail", {userName: author[0].userName})} >
           <Image
             style={{ height: 40, width: 40, borderRadius: 20 }}
             source={{ uri: author[0].avatar }}
           />
         </Touchable>
-        <Touchable>
+        <Touchable onPress={() => navigation.navigate("UserDetail", {userName: author[0].userName})}>
           <HeaderUserContainer>
             <Bold>{author[0].userName}</Bold>
             <Text>{location}</Text>
@@ -197,4 +198,4 @@ Post.propTypes = {
   caption: PropTypes.string.isRequired
 };
 
-export default Post;
+export default withNavigation(Post);
